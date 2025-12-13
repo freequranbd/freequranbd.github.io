@@ -1,0 +1,25 @@
+# Robots.txt for FreeQuranBd
+# https://freequranbd.github.io/
+
+# Allow all search engines to crawl all content
+User-agent: *
+Allow: /
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow crawling of potential future assets or system files
+Disallow: /.*$
+
+# Sitemap location
+Sitemap: https://freequranbd.github.io/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+# Crawl-delay: 1
