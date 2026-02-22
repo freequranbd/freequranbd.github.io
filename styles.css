@@ -31,10 +31,6 @@ body {
     flex-direction: column;
 }
 
-main {
-    flex: 1;
-}
-
 /* ===================================
    Arabic Calligraphy Decorations
    =================================== */
@@ -156,6 +152,41 @@ header h1 {
 }
 
 /* ===================================
+   Navigation
+   =================================== */
+nav {
+    background: #1a1a1a;
+    padding: 12px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: "Noto Sans Bengali", "Poppins", sans-serif;
+    transition: color 0.3s ease;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+/* ===================================
    Main Content
    =================================== */
 main {
@@ -262,32 +293,6 @@ section {
     font-size: 1rem;
 }
 
-/* ===================================
-   Languages
-   =================================== */
-.languages {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-.language-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #000000;
-    color: #ffffff;
-    padding: 15px 40px;
-    border-radius: 50px;
-    font-weight: 500;
-    box-shadow: var(--shadow);
-}
-
-.flag {
-    font-size: 1.5rem;
-}
-
 /* Bangla font support */
 body[data-lang="bn"] {
     font-family: "Noto Sans Bengali", "Poppins", sans-serif;
@@ -297,7 +302,6 @@ body[data-lang="bn"] .mission-text,
 body[data-lang="bn"] .service-card p,
 body[data-lang="bn"] .form-intro,
 body[data-lang="bn"] .tagline,
-body[data-lang="bn"] .language-badge span,
 body[data-lang="bn"] .quote-translation {
     line-height: 1.9;
 }
@@ -358,7 +362,7 @@ body[data-lang="bn"] .section-header h2 {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(26, 95, 63, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 .form-group textarea {
@@ -575,6 +579,14 @@ footer {
         padding: 14px 30px;
     }
 
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+
     .calligraphy-decoration {
         font-size: 4rem !important;
         opacity: 0.05;
@@ -688,6 +700,15 @@ footer {
         padding: 12px 25px;
     }
 
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+
     .calligraphy-decoration {
         display: none;
     }
@@ -712,6 +733,7 @@ footer {
 /* ===================================
    Accessibility & Focus Styles
    =================================== */
+.nav-links a:focus,
 .lang-btn:focus,
 .submit-btn:focus,
 .form-group input:focus,
@@ -742,7 +764,8 @@ footer {
    =================================== */
 @media print {
     .calligraphy-decoration,
-    .language-switcher {
+    .language-switcher,
+    nav {
         display: none;
     }
 

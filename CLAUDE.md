@@ -36,6 +36,7 @@ A professional, responsive, bilingual (Bangla/English) website for a Quran distr
 - **Focus States:** Clear outlines on all interactive elements
 - **Reduced Motion:** Respects `prefers-reduced-motion` preference
 - **Semantic HTML:** Proper heading hierarchy and ARIA support
+- **ARIA Labels:** `role="img"` and `aria-label` on emoji icons
 - **Color Contrast:** WCAG AA compliant colors
 
 ### 4. Performance
@@ -46,17 +47,18 @@ A professional, responsive, bilingual (Bangla/English) website for a Quran distr
 - **Optimized Animations:** Smooth transitions with GPU acceleration
 
 ### 5. Form Functionality
-- **Email Integration:** Uses `mailto:` to send requests to webadmin@outlook.com
+- **Email Integration:** Uses `mailto:` to send requests to freequranbd@gmail.com
+- **GA4 Analytics:** Tracks language switches, form submissions, and email clicks via `gtag()`
 - **Form Validation:** HTML5 required fields
 - **Bilingual Labels:** All fields translated in both languages
 - **Dropdown Options:** Organization type, language preference
 - **Textarea Fields:** Address and detailed needs
 
 ### 6. Design Elements
-- **Color Scheme:** 
-  - Primary: #1a5f3f (Islamic green)
-  - Secondary: #2d8659
-  - Accent: #d4af37 (Gold)
+- **Color Scheme:**
+  - Primary: #000000 (Black)
+  - Secondary: #1a1a1a
+  - Accent: #ffffff (White)
 - **Arabic Calligraphy:** Decorative Bismillah and Islamic symbols
 - **Gradient Headers/Footers:** Professional appearance
 - **Card Layouts:** Service offerings with hover effects
@@ -65,11 +67,13 @@ A professional, responsive, bilingual (Bangla/English) website for a Quran distr
 ## File Structure
 
 ```
-frequranbd.github.io/
+freequranbd.com/
 ├── index.html          # Main HTML file with bilingual content
 ├── styles.css          # All CSS styles and responsive design
-├── CLAUDE.md          # This documentation file
-└── README.md          # (Optional) Project readme
+├── sitemap.xml         # XML sitemap for search engines
+├── robots.txt          # Crawler directives
+├── CLAUDE.md           # This documentation file
+└── README.md           # (Optional) Project readme
 ```
 
 ## CSS Architecture
@@ -83,12 +87,13 @@ frequranbd.github.io/
 1. **Reset & Base Styles** - Normalize and defaults
 2. **Decorative Elements** - Arabic calligraphy positioning
 3. **Header** - Logo, language switcher, tagline
-4. **Main Content** - Mission, services, form sections
-5. **Footer** - Quote and contact information
-6. **Responsive** - Media queries for all breakpoints
-7. **Accessibility** - Focus states and skip links
-8. **Print** - Optimized printing layout
-9. **Animations** - Keyframes and transitions
+4. **Navigation** - Anchor links to page sections
+5. **Main Content** - Mission, services, form sections
+6. **Footer** - Quote and contact information
+7. **Responsive** - Media queries for all breakpoints
+8. **Accessibility** - Focus states and skip links
+9. **Print** - Optimized printing layout
+10. **Animations** - Keyframes and transitions
 
 ### Layout Techniques
 - **Flexbox:** Header, footer, language switcher, service cards
@@ -121,17 +126,21 @@ function switchLanguage(lang)
    - Logo and organization name
    - Tagline
 
-2. **Mission Statement**
+2. **Navigation**
+   - Anchor links to Mission, Services, Request Form sections
+   - Hidden in print layout
+
+3. **Mission Statement**
    - Bismillah (Arabic)
    - Organization's mission and goals
    - Bilingual content
 
-3. **Services**
+4. **Services**
    - Three service cards (Madrassas, Schools, Students)
-   - Language availability badge
+   - ARIA-labeled emoji icons
    - Hover effects
 
-4. **Request Form**
+5. **Request Form**
    - Personal information (name, phone, email)
    - Organization details
    - Delivery address
@@ -139,8 +148,8 @@ function switchLanguage(lang)
    - Additional details textarea
    - Submit button
 
-5. **Footer**
-   - Quranic quote (Surah Al-Isra 17:9)
+6. **Footer**
+   - Quranic quote (Surah Al-'Alaq 96:1)
    - Translation in both languages
    - Copyright and contact information
 
@@ -175,14 +184,14 @@ function switchLanguage(lang)
 
 | Color | Hex | Usage |
 |-------|-----|-------|
-| Primary Green | #1a5f3f | Headers, buttons, links |
-| Secondary Green | #2d8659 | Gradients, accents |
-| Accent Gold | #d4af37 | Highlights, decorations |
-| Text Dark | #2c3e50 | Primary text |
-| Text Light | #6c757d | Secondary text |
-| Background | #f8f9fa | Page background |
+| Primary Black | #000000 | Headers, buttons, links |
+| Secondary Dark | #1a1a1a | Gradients, nav |
+| Accent White | #ffffff | Highlights, text on dark |
+| Text Dark | #000000 | Primary text |
+| Text Light | #666666 | Secondary text |
+| Background | #ffffff | Page background |
 | White | #ffffff | Cards, buttons |
-| Border | #e0e0e0 | Input borders, cards |
+| Border | #d0d0d0 | Input borders, cards |
 
 ## Typography
 
@@ -223,7 +232,7 @@ The form generates a structured email with:
 - Request specifics
 - Submission timestamp (Bangladesh Time)
 
-**Recipient:** webadmin@outlook.com
+**Recipient:** freequranbd@gmail.com
 
 ## Customization Guide
 
@@ -231,9 +240,9 @@ The form generates a structured email with:
 Edit CSS variables in `styles.css`:
 ```css
 :root {
-    --primary-color: #1a5f3f;
-    --secondary-color: #2d8659;
-    --accent-color: #d4af37;
+    --primary-color: #000000;
+    --secondary-color: #1a1a1a;
+    --accent-color: #ffffff;
 }
 ```
 
@@ -298,12 +307,24 @@ Potential features for future versions:
 ## Contact & Support
 
 **Organization:** FreeQuranBd  
-**Email:** webadmin@outlook.com  
+**Email:** freequranbd@gmail.com  
 **Purpose:** Free Quran distribution in Bangladesh
 
 ---
 
-**Built with:** Claude Code (Anthropic)  
-**Version:** 1.0  
-**Last Updated:** December 2024  
+**Domain:** https://freequranbd.com
+**Built with:** Claude Code (Anthropic)
+**Version:** 2.0
+**Last Updated:** February 2026
 **License:** To be determined by organization
+
+## SEO
+
+- **Structured Data:** Organization, WebSite, BreadcrumbList schemas (JSON-LD)
+- **Meta Tags:** Open Graph, Twitter Card, geo tags, canonical URL
+- **Sitemap:** `sitemap.xml` with hreflang alternate links
+- **Robots:** `robots.txt` with sitemap reference
+- **Analytics:** Google Analytics 4 (GA4) with custom event tracking
+- **Google Search Console:** Verification meta tag configured
+- **Favicon:** `favicon.ico` and `apple-touch-icon.png` references
+- **Default Content Language:** Bangla (matches `<html lang="bn">`)

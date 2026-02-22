@@ -33,20 +33,20 @@
         <meta name="ICBM" content="23.685, 90.3563" />
 
         <!-- Canonical URL -->
-        <link rel="canonical" href="https://freequranbd.github.io/" />
+        <link rel="canonical" href="https://freequranbd.com/" />
 
         <!-- Alternate Languages -->
-        <link rel="alternate" hreflang="bn" href="https://freequranbd.github.io/" />
-        <link rel="alternate" hreflang="en" href="https://freequranbd.github.io/" />
+        <link rel="alternate" hreflang="bn" href="https://freequranbd.com/" />
+        <link rel="alternate" hreflang="en" href="https://freequranbd.com/" />
         <link
             rel="alternate"
             hreflang="x-default"
-            href="https://freequranbd.github.io/"
+            href="https://freequranbd.com/"
         />
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://freequranbd.github.io/" />
+        <meta property="og:url" content="https://freequranbd.com/" />
         <meta
             property="og:title"
             content="FreeQuranBd - Free Quran Distribution in Bangladesh"
@@ -55,7 +55,7 @@
             property="og:description"
             content="Providing free Quran copies in Bangla to schools, madrassas, and students across Bangladesh. Request your free Quran today."
         />
-        <meta property="og:image" content="https://freequranbd.github.io/og-image.jpg" />
+        <meta property="og:image" content="https://freequranbd.com/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:locale" content="bn_BD" />
@@ -64,7 +64,7 @@
 
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://freequranbd.github.io/" />
+        <meta name="twitter:url" content="https://freequranbd.com/" />
         <meta
             name="twitter:title"
             content="FreeQuranBd - Free Quran Distribution in Bangladesh"
@@ -75,7 +75,7 @@
         />
         <meta
             name="twitter:image"
-            content="https://freequranbd.github.io/twitter-card.jpg"
+            content="https://freequranbd.com/twitter-card.jpg"
         />
 
         <!-- Preconnect for Performance -->
@@ -100,6 +100,13 @@
             />
         </noscript>
 
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+        <!-- Google Search Console Verification -->
+        <meta name="google-site-verification" content="QfLel6iky42vl2DMRIDOlEIRgT9yDTN1j9lz_BTqTow" />
+
         <link rel="stylesheet" href="styles.css" />
 
         <!-- Google Analytics 4 (GA4) -->
@@ -122,11 +129,11 @@
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
-                "@type": "NGO",
+                "@type": "Organization",
                 "name": "FreeQuranBd",
                 "alternateName": "ফ্রি-কুরআন-বিডি",
-                "url": "https://freequranbd.github.io/",
-                "logo": "https://freequranbd.github.io/logo.png",
+                "url": "https://freequranbd.com/",
+                "logo": "https://freequranbd.com/logo.png",
                 "description": "Non-profit organization providing free Quran distribution across Bangladesh to schools, madrassas, and students.",
                 "address": {
                     "@type": "PostalAddress",
@@ -144,12 +151,11 @@
                     "contactType": "Customer Service",
                     "availableLanguage": ["Bengali", "English"]
                 },
-                "sameAs": [],
+                "sameAs": ["https://www.facebook.com/profile.php?id=61588571820575"],
                 "areaServed": {
                     "@type": "Country",
                     "name": "Bangladesh"
-                },
-                "serviceType": "Religious Education & Quran Distribution"
+                }
             }
         </script>
 
@@ -160,7 +166,7 @@
                 "@type": "WebSite",
                 "name": "FreeQuranBd",
                 "alternateName": "ফ্রি-কুরআন-বিডি",
-                "url": "https://freequranbd.github.io/",
+                "url": "https://freequranbd.com/",
                 "description": "Free Quran distribution platform for Bangladesh",
                 "inLanguage": ["bn", "en"],
                 "publisher": {
@@ -180,19 +186,19 @@
                         "@type": "ListItem",
                         "position": 1,
                         "name": "Home",
-                        "item": "https://freequranbd.github.io/"
+                        "item": "https://freequranbd.com/"
                     },
                     {
                         "@type": "ListItem",
                         "position": 2,
                         "name": "Our Mission",
-                        "item": "https://freequranbd.github.io/#main-content"
+                        "item": "https://freequranbd.com/#mission"
                     },
                     {
                         "@type": "ListItem",
                         "position": 3,
                         "name": "Request Quran",
-                        "item": "https://freequranbd.github.io/#quran-request-form"
+                        "item": "https://freequranbd.com/#request"
                     }
                 ]
             }
@@ -215,7 +221,7 @@
                         <button class="lang-btn active" data-lang="bn">বাংলা</button>
                     </div>
                     <div class="logo">
-                        <div class="logo-icon">📖</div>
+                        <div class="logo-icon" role="img" aria-label="Open book">📖</div>
                         <h1>FreeQuranBd</h1>
                     </div>
                     <p
@@ -223,22 +229,33 @@
                         data-en="Spreading the Light of Knowledge Across Bangladesh"
                         data-bn="বাংলাদেশ জুড়ে কোরআনের আলো"
                     >
-                        Spreading the Light of Knowledge Across Bangladesh
+                        বাংলাদেশ জুড়ে কোরআনের আলো
                     </p>
                 </div>
             </div>
         </header>
 
+        <!-- Navigation -->
+        <nav aria-label="Main navigation">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="#mission" data-en="Mission" data-bn="লক্ষ্য">লক্ষ্য</a></li>
+                    <li><a href="#services" data-en="Services" data-bn="সেবা">সেবা</a></li>
+                    <li><a href="#request" data-en="Request Quran" data-bn="কোরআনের জন্য অনুরোধ">কোরআনের জন্য অনুরোধ</a></li>
+                </ul>
+            </div>
+        </nav>
+
         <!-- Main Content -->
         <main id="main-content">
             <div class="container">
                 <!-- Mission Statement Section -->
-                <section class="mission-section">
+                <section id="mission" class="mission-section">
                     <div class="section-header">
                         <div class="bismillah">
                             بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
                         </div>
-                        <h2 data-en="Our Mission" data-bn="আমাদের লক্ষ্য">Our Mission</h2>
+                        <h2 data-en="Our Mission" data-bn="আমাদের লক্ষ্য">আমাদের লক্ষ্য</h2>
                         <div class="divider"></div>
                     </div>
                     <div class="mission-content">
@@ -247,78 +264,70 @@
                             data-en="Our mission is to spread the teachings of the Quran and increase the understanding of the Quran among the people of Bangladesh. We believe that access to the holy Quran should be available to everyone, regardless of their economic circumstances. Through our free distribution program, we aim to reach schools, madrassas, and individual students across the nation, providing them with quality copies of the Quran in Bangla translation."
                             data-bn="আমাদের লক্ষ্য হলো বাংলাদেশের মানুষের মধ্যে কোরআনের আলো ছড়িয়ে দেয়া। আমরা বিশ্বাস করি যে পবিত্র কুরআনের প্রবেশাধিকার সবার জন্য সহজ হওয়া উচিত, তাদের অর্থনৈতিক অবস্থা যাই হোক না কেন। আমাদের বিনামূল্যে বিতরণ কর্মসূচির মাধ্যমে, আমরা দেশজুড়ে স্কুল, মাদ্রাসা এবং শিক্ষার্থীদের কাছে পৌঁছানোর লক্ষ্য রাখি, তাদের বাংলা অনুবাদসহ মানসম্পন্ন কোরআনের কপি প্রদান করি।"
                         >
-                            Our mission is to spread the teachings of the Quran and
-                            increase the understanding of the Quran among the people of
-                            Bangladesh. We believe that access to the holy Quran should be
-                            available to everyone, regardless of their economic
-                            circumstances. Through our free distribution program, we aim
-                            to reach schools, madrassas, and individual students across
-                            the nation, providing them with quality copies of the Quran in
-                            Bangla translation.
+                            আমাদের লক্ষ্য হলো বাংলাদেশের মানুষের মধ্যে কোরআনের আলো ছড়িয়ে দেয়া। আমরা বিশ্বাস করি যে পবিত্র কুরআনের প্রবেশাধিকার সবার জন্য সহজ হওয়া উচিত, তাদের অর্থনৈতিক অবস্থা যাই হোক না কেন। আমাদের বিনামূল্যে বিতরণ কর্মসূচির মাধ্যমে, আমরা দেশজুড়ে স্কুল, মাদ্রাসা এবং শিক্ষার্থীদের কাছে পৌঁছানোর লক্ষ্য রাখি, তাদের বাংলা অনুবাদসহ মানসম্পন্ন কোরআনের কপি প্রদান করি।
                         </p>
                     </div>
                 </section>
 
                 <!-- Services Section -->
-                <section class="services-section">
+                <section id="services" class="services-section">
                     <div class="section-header">
                         <h2 data-en="What We Offer" data-bn="আমাদের সেবা">
-                            What We Offer
+                            আমাদের সেবা
                         </h2>
                         <div class="divider"></div>
                     </div>
                     <div class="services-grid">
                         <div class="service-card">
-                            <div class="service-icon">🕌</div>
+                            <div class="service-icon" role="img" aria-label="Mosque">🕌</div>
                             <h3 data-en="For Madrassas" data-bn="মাদ্রাসার জন্য">
-                                For Madrassas
+                                মাদ্রাসার জন্য
                             </h3>
                             <p
                                 data-en="Free Quran copies for Islamic educational institutions"
                                 data-bn="ইসলামিক শিক্ষা প্রতিষ্ঠানের জন্য বিনামূল্যে কুরআন"
                             >
-                                Free Quran copies for Islamic educational institutions
+                                ইসলামিক শিক্ষা প্রতিষ্ঠানের জন্য বিনামূল্যে কুরআন
                             </p>
                         </div>
                         <div class="service-card">
-                            <div class="service-icon">🏫</div>
+                            <div class="service-icon" role="img" aria-label="School">🏫</div>
                             <h3 data-en="For Schools" data-bn="স্কুলের জন্য">
-                                For Schools
+                                স্কুলের জন্য
                             </h3>
                             <p
                                 data-en="Supporting schools with Quran resources for Islamic studies"
                                 data-bn="ইসলামিক শিক্ষার জন্য কুরআন সংস্থান দিয়ে স্কুলগুলিকে সহায়তা করা"
                             >
-                                Supporting schools with Quran resources for Islamic
-                                studies
+                                ইসলামিক শিক্ষার জন্য কুরআন সংস্থান দিয়ে স্কুলগুলিকে সহায়তা করা
                             </p>
                         </div>
                         <div class="service-card">
-                            <div class="service-icon">👨‍🎓</div>
+                            <div class="service-icon" role="img" aria-label="Student">👨‍🎓</div>
                             <h3
                                 data-en="For Students"
                                 data-bn="শিক্ষার্থীদের জন্য (যে কোনো বয়েসের)"
                             >
-                                For Students
+                                শিক্ষার্থীদের জন্য (যে কোনো বয়েসের)
                             </h3>
                             <p
                                 data-en="Individual copies for students eager to learn"
                                 data-bn="শিখতে আগ্রহী শিক্ষার্থীদের জন্য ব্যক্তিগত কপি"
                             >
-                                Individual copies for students eager to learn
+                                শিখতে আগ্রহী শিক্ষার্থীদের জন্য ব্যক্তিগত কপি
                             </p>
                         </div>
                     </div>
                 </section>
 
                 <!-- Request Form Section -->
-                <section class="form-section">
+                <section id="request" class="form-section">
                     <div class="section-header">
                         <h2
                             data-en="Request Your Free Quran"
                             data-bn="আপনার বিনামূল্যে কোরআনের জন্য অনুরোধ করুন"
                         >
-                            Request Your Free Quran
+                            আপনার বিনামূল্যে কোরআনের জন্য অনুরোধ করুন
                         </h2>
                         <div class="divider"></div>
                         <p
@@ -326,8 +335,7 @@
                             data-en="Fill out the form below and we will process your request as soon as possible"
                             data-bn="নিচের ফর্মটি পূরণ করুন এবং আমরা যত তাড়াতাড়ি সম্ভব আপনার অনুরোধ প্রক্রিয়া করব"
                         >
-                            Fill out the form below and we will process your request as
-                            soon as possible
+                            নিচের ফর্মটি পূরণ করুন এবং আমরা যত তাড়াতাড়ি সম্ভব আপনার অনুরোধ প্রক্রিয়া করব
                         </p>
                     </div>
                     <form id="quran-request-form" class="request-form">
@@ -337,7 +345,7 @@
                                     for="name"
                                     data-en="Full Name *"
                                     data-bn="পুরো নাম *"
-                                    >Full Name *</label
+                                    >পুরো নাম *</label
                                 >
                                 <input
                                     type="text"
@@ -346,7 +354,7 @@
                                     required
                                     data-placeholder-en="Enter your full name"
                                     data-placeholder-bn="আপনার পুরো নাম লিখুন"
-                                    placeholder="Enter your full name"
+                                    placeholder="আপনার পুরো নাম লিখুন"
                                 />
                             </div>
                             <div class="form-group">
@@ -354,7 +362,7 @@
                                     for="phone"
                                     data-en="Phone Number *"
                                     data-bn="ফোন নম্বর *"
-                                    >Phone Number *</label
+                                    >ফোন নম্বর *</label
                                 >
                                 <input
                                     type="tel"
@@ -372,7 +380,7 @@
                                     for="email"
                                     data-en="Email Address"
                                     data-bn="ইমেইল ঠিকানা"
-                                    >Email Address</label
+                                    >ইমেইল ঠিকানা</label
                                 >
                                 <input
                                     type="email"
@@ -380,7 +388,7 @@
                                     name="email"
                                     data-placeholder-en="your.email@example.com"
                                     data-placeholder-bn="আপনার.ইমেইল@example.com"
-                                    placeholder="your.email@example.com"
+                                    placeholder="আপনার.ইমেইল@example.com"
                                 />
                             </div>
                             <div class="form-group">
@@ -388,7 +396,7 @@
                                     for="organization-type"
                                     data-en="Organization Type *"
                                     data-bn="প্রতিষ্ঠানের ধরন *"
-                                    >Organization Type *</label
+                                    >প্রতিষ্ঠানের ধরন *</label
                                 >
                                 <select
                                     id="organization-type"
@@ -400,35 +408,35 @@
                                         data-en="Select type"
                                         data-bn="ধরন নির্বাচন করুন"
                                     >
-                                        Select type
+                                        ধরন নির্বাচন করুন
                                     </option>
                                     <option
                                         value="madrassa"
                                         data-en="Madrassa"
                                         data-bn="মাদ্রাসা"
                                     >
-                                        Madrassa
+                                        মাদ্রাসা
                                     </option>
                                     <option
                                         value="school"
                                         data-en="School"
                                         data-bn="স্কুল"
                                     >
-                                        School
+                                        স্কুল
                                     </option>
                                     <option
                                         value="individual"
                                         data-en="Individual Student"
                                         data-bn="স্বতন্ত্র শিক্ষার্থী"
                                     >
-                                        Individual Student
+                                        স্বতন্ত্র শিক্ষার্থী
                                     </option>
                                     <option
                                         value="other"
                                         data-en="Other"
                                         data-bn="অন্যান্য"
                                     >
-                                        Other
+                                        অন্যান্য
                                     </option>
                                 </select>
                             </div>
@@ -439,7 +447,7 @@
                                 for="organization-name"
                                 data-en="Organization/Institution Name"
                                 data-bn="প্রতিষ্ঠান/সংস্থার নাম"
-                                >Organization/Institution Name</label
+                                >প্রতিষ্ঠান/সংস্থার নাম</label
                             >
                             <input
                                 type="text"
@@ -447,7 +455,7 @@
                                 name="organization-name"
                                 data-placeholder-en="If applicable"
                                 data-placeholder-bn="প্রযোজ্য হলে"
-                                placeholder="If applicable"
+                                placeholder="প্রযোজ্য হলে"
                             />
                         </div>
 
@@ -456,7 +464,7 @@
                                 for="address"
                                 data-en="Complete Address *"
                                 data-bn="সম্পূর্ণ ঠিকানা *"
-                                >Complete Address *</label
+                                >সম্পূর্ণ ঠিকানা *</label
                             >
                             <textarea
                                 id="address"
@@ -465,7 +473,7 @@
                                 required
                                 data-placeholder-en="House/Building number, Street, Area, District, Division"
                                 data-placeholder-bn="বাড়ি/বিল্ডিং নম্বর, রাস্তা, এলাকা, জেলা, বিভাগ"
-                                placeholder="House/Building number, Street, Area, District, Division"
+                                placeholder="বাড়ি/বিল্ডিং নম্বর, রাস্তা, এলাকা, জেলা, বিভাগ"
                             ></textarea>
                         </div>
 
@@ -475,7 +483,7 @@
                                     for="quantity"
                                     data-en="Number of Copies Needed *"
                                     data-bn="প্রয়োজনীয় কপির সংখ্যা *"
-                                    >Number of Copies Needed *</label
+                                    >প্রয়োজনীয় কপির সংখ্যা *</label
                                 >
                                 <input
                                     type="number"
@@ -486,7 +494,7 @@
                                     required
                                     data-placeholder-en="e.g., 10"
                                     data-placeholder-bn="যেমন, ১০"
-                                    placeholder="e.g., 10"
+                                    placeholder="যেমন, ১০"
                                 />
                             </div>
                             <div class="form-group">
@@ -494,7 +502,7 @@
                                     for="language"
                                     data-en="Preferred Language *"
                                     data-bn="পছন্দের ভাষা *"
-                                    >Preferred Language *</label
+                                    >পছন্দের ভাষা *</label
                                 >
                                 <select id="language" name="language" required>
                                     <option
@@ -502,21 +510,21 @@
                                         data-en="Select language"
                                         data-bn="ভাষা নির্বাচন করুন"
                                     >
-                                        Select language
+                                        ভাষা নির্বাচন করুন
                                     </option>
                                     <option
                                         value="bangla"
                                         data-en="Bangla Translation"
                                         data-bn="বাংলা অনুবাদ"
                                     >
-                                        Bangla Translation
+                                        বাংলা অনুবাদ
                                     </option>
                                     <option
                                         value="both"
                                         data-en="Bangla with Arabic"
                                         data-bn="আরবি সহ বাংলা"
                                     >
-                                        Bangla with Arabic
+                                        আরবি সহ বাংলা
                                     </option>
                                 </select>
                             </div>
@@ -527,7 +535,7 @@
                                 for="details"
                                 data-en="Additional Details About Your Need *"
                                 data-bn="আপনার প্রয়োজন সম্পর্কে অতিরিক্ত বিবরণ *"
-                                >Additional Details About Your Need *</label
+                                >আপনার প্রয়োজন সম্পর্কে অতিরিক্ত বিবরণ *</label
                             >
                             <textarea
                                 id="details"
@@ -536,14 +544,14 @@
                                 required
                                 data-placeholder-en="Please describe why you need the Quran copies and how they will be used..."
                                 data-placeholder-bn="দয়া করে বর্ণনা করুন কেন আপনার কুরআনের কপি প্রয়োজন এবং সেগুলি কীভাবে ব্যবহার করা হবে..."
-                                placeholder="Please describe why you need the Quran copies and how they will be used..."
+                                placeholder="দয়া করে বর্ণনা করুন কেন আপনার কুরআনের কপি প্রয়োজন এবং সেগুলি কীভাবে ব্যবহার করা হবে..."
                             ></textarea>
                         </div>
 
                         <div class="form-submit">
                             <button type="submit" class="submit-btn">
                                 <span data-en="Submit Request" data-bn="অনুরোধ জমা দিন"
-                                    >Submit Request</span
+                                    >অনুরোধ জমা দিন</span
                                 >
                                 <span class="btn-icon">→</span>
                             </button>
@@ -564,30 +572,30 @@
                             data-en="Read, ˹O Prophet,˺ in the Name of your Lord Who created—"
                             data-bn="পাঠ করুন আপনার পালনকর্তার নামে যিনি সৃষ্টি করেছেন"
                         >
-                            "Read, ˹O Prophet,˺ in the Name of your Lord Who created—"
+                            পাঠ করুন আপনার পালনকর্তার নামে যিনি সৃষ্টি করেছেন
                         </p>
                         <p
                             class="quote-reference"
-                            data-en="- Surah Al-'Alaq (19)"
-                            data-bn="- সূরা আল-আলাক (১৯)"
+                            data-en="- Surah Al-'Alaq (96:1)"
+                            data-bn="- সূরা আল-আলাক (৯৬:১)"
                         >
-                            - Surah Al-Isra (17:9)
+                            - সূরা আল-আলাক (৯৬:১)
                         </p>
                     </div>
                     <div class="footer-info">
                         <p
-                            data-en="© 2025 FreeQuranBd. All rights reserved."
-                            data-bn="© ২০২৫ ফ্রি-কুরআন-বিডি। সর্বস্বত্ব সংরক্ষিত।"
+                            data-en="© 2026 FreeQuranBd. All rights reserved."
+                            data-bn="© ২০২৬ ফ্রি-কুরআন-বিডি। সর্বস্বত্ব সংরক্ষিত।"
                         >
-                            &copy; 2024 FreeQuranBd. All rights reserved.
+                            &copy; ২০২৬ ফ্রি-কুরআন-বিডি। সর্বস্বত্ব সংরক্ষিত।
                         </p>
                         <p>
-                            <span data-en="Contact:" data-bn="যোগাযোগ:">Contact:</span>
+                            <span data-en="Contact:" data-bn="যোগাযোগ:">যোগাযোগ:</span>
                             <a
                                 href="mailto:freequranbd@gmail.com"
                                 onclick="
-                                    if (typeof window.trackEvent === 'function') {
-                                        window.trackEvent('email_click', {
+                                    if (typeof gtag === 'function') {
+                                        gtag('event', 'email_click', {
                                             email_type: 'contact_footer',
                                         });
                                     }
@@ -650,8 +658,8 @@
                 localStorage.setItem("preferred-language", lang);
 
                 // Track language switch event in GA4
-                if (typeof window.trackEvent === "function") {
-                    window.trackEvent("language_switch", {
+                if (typeof gtag === "function") {
+                    gtag("event", "language_switch", {
                         language: lang,
                         language_name: lang === "bn" ? "Bengali" : "English",
                     });
@@ -721,12 +729,12 @@ Submitted on: ${new Date().toLocaleString("en-GB", { timeZone: "Asia/Dhaka" })} 
                     const subject = encodeURIComponent(
                         "Free Quran Request - " + data.name,
                     );
-                    const body = encodeURIComponent(emailBody);
-                    const mailtoLink = `mailto:freequranbd@gmail.com?subject=${subject}&body=${body}`;
+                    const encodedBody = encodeURIComponent(emailBody);
+                    const mailtoLink = `mailto:freequranbd@gmail.com?subject=${subject}&body=${encodedBody}`;
 
                     // Track form submission event in GA4
-                    if (typeof window.trackEvent === "function") {
-                        window.trackEvent("form_submit", {
+                    if (typeof gtag === "function") {
+                        gtag("event", "form_submit", {
                             form_name: "quran_request_form",
                             organization_type: data["organization-type"],
                             quantity: data.quantity,
