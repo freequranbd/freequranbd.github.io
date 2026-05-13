@@ -335,6 +335,25 @@ body[data-lang="bn"] .section-header h2 {
     font-size: 1rem;
 }
 
+.form-fallback {
+    color: var(--text-dark);
+    margin-top: 20px;
+    font-size: 0.95rem;
+    display: inline;
+}
+
+.form-fallback-email {
+    color: var(--text-dark);
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 6px;
+}
+
+.form-fallback-email:hover,
+.form-fallback-email:focus {
+    color: var(--text-light);
+}
+
 .request-form {
     max-width: 800px;
     margin: 0 auto;
