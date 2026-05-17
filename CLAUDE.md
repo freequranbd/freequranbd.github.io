@@ -14,7 +14,7 @@ A professional, responsive, bilingual (Bangla/English) website for a Quran distr
 
 - **HTML5** - Semantic markup
 - **CSS3** - Custom styling with CSS variables, flexbox, and grid
-- **Vanilla JavaScript** - Language switching and form handling
+- **Vanilla JavaScript** - Language switching and analytics event tracking
 - **Google Fonts** - Amiri (Arabic), Noto Sans Bengali, Poppins
 
 ## Features
@@ -41,18 +41,18 @@ A professional, responsive, bilingual (Bangla/English) website for a Quran distr
 
 ### 4. Performance
 - **Flexbox Layout:** Sticky footer, no JavaScript needed for layout
-- **Font Preconnect:** Faster font loading
+- **Font Preconnect & Preload:** Faster font loading with non-blocking stylesheet preload pattern
 - **CSS Variables:** Easy theming and maintenance
 - **Minimal Dependencies:** No frameworks or libraries
+- **Pure-CSS Background Pattern:** Subtle radial-gradient dot pattern — no image bytes, GPU-composited
+- **LCP Hints:** Logo image uses `fetchpriority="high"` and `decoding="async"`
 - **Optimized Animations:** Smooth transitions with GPU acceleration
 
-### 5. Form Functionality
-- **Email Integration:** Uses `mailto:` to send requests to freequranbd@gmail.com
-- **GA4 Analytics:** Tracks language switches, form submissions, and email clicks via `gtag()`
-- **Form Validation:** HTML5 required fields
-- **Bilingual Labels:** All fields translated in both languages
-- **Dropdown Options:** Organization type, language preference
-- **Textarea Fields:** Address and detailed needs
+### 5. Email Request Flow
+- **Direct Email CTA:** Request section contains a bilingual call to action and a `mailto:freequranbd@gmail.com?subject=Free%20Quran%20Request` link
+- **GA4 Analytics:** Tracks language switches and email clicks (`email_type: request_primary` for the request CTA, `contact_footer` for the footer link) via `gtag()`
+- **No Form Layer:** No HTML form, validation, or JavaScript form handling — requests go straight through the user's email client to minimize friction and avoid backend dependencies
+- **Bilingual CTA Copy:** Request instruction and email link rendered in the active language
 
 ### 6. Design Elements
 - **Color Scheme:**
@@ -88,7 +88,7 @@ freequranbd.com/
 2. **Decorative Elements** - Arabic calligraphy positioning
 3. **Header** - Logo, language switcher, tagline
 4. **Navigation** - Anchor links to page sections
-5. **Main Content** - Mission, services, form sections
+5. **Main Content** - Mission, services, request (email CTA) sections
 6. **Footer** - Quote and contact information
 7. **Responsive** - Media queries for all breakpoints
 8. **Accessibility** - Focus states and skip links
@@ -97,27 +97,27 @@ freequranbd.com/
 
 ### Layout Techniques
 - **Flexbox:** Header, footer, language switcher, service cards
-- **CSS Grid:** Services grid, form rows
+- **CSS Grid:** Services grid
 - **Position Fixed:** Decorative calligraphy elements
 - **Sticky Footer:** Flexbox on body element
 
 ## JavaScript Functionality
 
 ### Language Switching
-```javascript
-function switchLanguage(lang)
-```
-- Updates `data-lang` attribute on body
-- Switches text content using data attributes
-- Updates placeholders and options
-- Saves preference to localStorage
 
-### Form Handling
-- Captures form data
-- Formats email body
-- Opens default email client with pre-filled content
-- Shows success message in current language
-- Resets form after submission
+Two functions split by intent:
+
+```javascript
+function applyLanguage(lang)  // pure DOM mutation, no side effects
+function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
+```
+
+- `applyLanguage()` updates the `data-lang` attribute on `<body>`, toggles the active button, and swaps `textContent` / `placeholder` from `data-en` / `data-bn` attributes. Used for restoring saved preferences on load.
+- `switchLanguage()` wraps `applyLanguage()` and adds the persistent side effects (localStorage save + `language_switch` GA4 event). Only called from button click handlers.
+- On first visit, no JS work is needed — the HTML ships with Bangla as the default. Saved preference is only re-applied when it differs from the default.
+
+### Email Click Tracking
+- `mailto:` links in the Request section and footer have inline `onclick` handlers that fire `gtag('event', 'email_click', { email_type })` so GA4 can distinguish the two call-to-action paths.
 
 ## Content Sections
 
@@ -127,7 +127,7 @@ function switchLanguage(lang)
    - Tagline
 
 2. **Navigation**
-   - Anchor links to Mission, Services, Request Form sections
+   - Anchor links to Mission, Services, Request sections
    - Hidden in print layout
 
 3. **Mission Statement**
@@ -140,13 +140,11 @@ function switchLanguage(lang)
    - ARIA-labeled emoji icons
    - Hover effects
 
-5. **Request Form**
-   - Personal information (name, phone, email)
-   - Organization details
-   - Delivery address
-   - Request specifics (quantity, language preference)
-   - Additional details textarea
-   - Submit button
+5. **Request Section**
+   - Bilingual heading and divider
+   - Short bilingual instruction prompting the visitor to email
+   - `mailto:` link to `freequranbd@gmail.com` with `subject=Free Quran Request` prefilled
+   - GA4 `email_click` event (`email_type: request_primary`) on click
 
 6. **Footer**
    - Quranic quote (Surah Al-'Alaq 96:1)
@@ -164,13 +162,11 @@ function switchLanguage(lang)
 
 ### Desktop (>768px)
 - Three-column service grid
-- Two-column form rows
 - Full decorative elements
 - Larger typography
 
 ### Tablet (≤768px)
 - Single-column service grid
-- Single-column form
 - Reduced decorations (opacity 0.05)
 - Medium typography
 
@@ -205,32 +201,15 @@ function switchLanguage(lang)
 - **Bangla:** 1.9 (body), 2.0 (paragraphs)
 - **Arabic:** 1.6
 
-## Form Fields
+## Request Submission
 
-1. **Full Name** (required) - text input
-2. **Phone Number** (required) - tel input
-3. **Email Address** (optional) - email input
-4. **Organization Type** (required) - select dropdown
-   - Madrassa
-   - School
-   - Individual Student
-   - Other
-5. **Organization Name** (optional) - text input
-6. **Complete Address** (required) - textarea
-7. **Number of Copies** (required) - number input (1-500)
-8. **Preferred Language** (required) - select dropdown
-   - Bangla Translation
-   - Bangla with Arabic
-9. **Additional Details** (required) - textarea
+Requests are submitted by email rather than through an on-page form. The Request section presents a single `mailto:` link with a pre-filled subject line; the user's mail client opens for them to fill in details. Suggested contents (communicated to users via the FAQ schema and homepage copy):
 
-## Email Template
-
-The form generates a structured email with:
-- Requester information
-- Organization details
-- Delivery address
-- Request specifics
-- Submission timestamp (Bangladesh Time)
+- Full name and phone number
+- Delivery address (district, division)
+- Number of copies needed
+- Preferred edition (Bangla translation, or Arabic with Bangla)
+- Organization name and type (madrassa / school / individual / other), if applicable
 
 **Recipient:** freequranbd@gmail.com
 
@@ -254,18 +233,16 @@ Update Google Fonts link and CSS font-family declarations
 2. Add `data-[lang-code]` attributes to elements
 3. Update `switchLanguage()` function
 
-### Modifying Form
-- Edit form fields in HTML
-- Update email template in JavaScript
-- Adjust form validation as needed
+### Modifying the Request CTA
+- Edit the bilingual instruction text and `mailto:` `href` in the `#request` section of `index.html`
+- If changing the recipient address, also update the footer contact link, the JSON-LD `Organization.contactPoint.email`, the FAQ schema answers, and the meta descriptions
 
 ## Future Enhancements
 
 Potential features for future versions:
-- [ ] Backend API integration for form submission
+- [ ] Reintroduce an on-page request form backed by a serverless endpoint (Formspree, Cloudflare Worker, etc.)
 - [ ] Database storage of requests
 - [ ] Admin dashboard for request management
-- [ ] Email verification
 - [ ] SMS notifications
 - [ ] Request tracking system
 - [ ] Gallery of distribution events
@@ -286,23 +263,25 @@ Potential features for future versions:
 - ✅ Cross-browser compatibility
 
 ### Known Limitations
-- Email submission requires user's email client
-- No server-side validation
-- LocalStorage only (no cloud sync)
+- Request submission depends on the visitor having a configured email client (or being able to copy the address)
+- No backend, so no server-side request capture, deduplication, or analytics beyond GA4 click events
+- LocalStorage only (no cloud sync of language preference)
 - Single-page design
 
 ## Testing Checklist
 
 - [ ] Test on Chrome, Firefox, Safari, Edge
 - [ ] Test on iOS and Android devices
-- [ ] Test language switching
-- [ ] Test form validation
-- [ ] Test email submission
-- [ ] Test responsive breakpoints
-- [ ] Test keyboard navigation
+- [ ] Test language switching (both directions; verify localStorage persistence)
+- [ ] Verify GA4 `language_switch` event fires only on user click, not on page load
+- [ ] Test the `mailto:` request link opens the email client with prefilled subject
+- [ ] Verify GA4 `email_click` events fire for both the request CTA and footer link
+- [ ] Test responsive breakpoints (768px, 480px)
+- [ ] Test keyboard navigation and skip-to-main link
 - [ ] Test screen reader compatibility
 - [ ] Test print layout
 - [ ] Test with reduced motion enabled
+- [ ] Validate all JSON-LD blocks parse (Organization, WebSite, BreadcrumbList, FAQPage)
 
 ## Contact & Support
 
@@ -314,13 +293,13 @@ Potential features for future versions:
 
 **Domain:** https://freequranbd.com
 **Built with:** Claude Code (Anthropic)
-**Version:** 2.0
-**Last Updated:** February 2026
+**Version:** 2.1
+**Last Updated:** May 2026
 **License:** To be determined by organization
 
 ## SEO
 
-- **Structured Data:** Organization, WebSite, BreadcrumbList schemas (JSON-LD)
+- **Structured Data:** Organization, WebSite, BreadcrumbList, FAQPage schemas (JSON-LD)
 - **Meta Tags:** Open Graph, Twitter Card, geo tags, canonical URL
 - **Sitemap:** `sitemap.xml` with hreflang alternate links
 - **Robots:** `robots.txt` with sitemap reference

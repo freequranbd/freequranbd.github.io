@@ -38,10 +38,8 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('OE46GB0.jpg');
-    background-repeat: repeat;
-    background-size: 300px;
-    opacity: 0.08;
+    background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.06) 1.5px, transparent 2px);
+    background-size: 28px 28px;
     z-index: 0;
     pointer-events: none;
 }
@@ -318,26 +316,18 @@ body[data-lang="bn"] {
 
 body[data-lang="bn"] .mission-text,
 body[data-lang="bn"] .service-card p,
-body[data-lang="bn"] .form-intro,
 body[data-lang="bn"] .tagline,
 body[data-lang="bn"] .quote-translation {
     line-height: 1.9;
 }
 
-body[data-lang="bn"] label,
 body[data-lang="bn"] .section-header h2 {
     line-height: 1.8;
 }
 
 /* ===================================
-   Form Section
+   Request Section
    =================================== */
-.form-intro {
-    color: var(--text-light);
-    margin-top: 15px;
-    font-size: 1rem;
-}
-
 .form-fallback {
     color: var(--text-dark);
     margin-top: 20px;
@@ -355,98 +345,6 @@ body[data-lang="bn"] .section-header h2 {
 .form-fallback-email:hover,
 .form-fallback-email:focus {
     color: var(--text-light);
-}
-
-.request-form {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-bottom: 25px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 25px;
-}
-
-.form-group label {
-    font-weight: 500;
-    color: var(--text-dark);
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    padding: 12px 15px;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: "Noto Sans Bengali", "Poppins", sans-serif;
-    transition: all 0.3s ease;
-    background: var(--white);
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.form-submit {
-    text-align: center;
-    margin-top: 35px;
-}
-
-.submit-btn {
-    background: #000000;
-    color: #ffffff;
-    border: 2px solid #000000;
-    padding: 15px 50px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: 50px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow);
-    font-family: "Noto Sans Bengali", "Poppins", sans-serif;
-}
-
-.submit-btn:hover {
-    transform: translateY(-2px);
-    background: #333333;
-    box-shadow: var(--shadow-lg);
-}
-
-.submit-btn:active {
-    transform: translateY(0);
-}
-
-.btn-icon {
-    font-size: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-.submit-btn:hover .btn-icon {
-    transform: translateX(5px);
 }
 
 /* ===================================
@@ -602,21 +500,6 @@ footer {
         gap: 20px;
     }
 
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .submit-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 14px 30px;
-    }
-
     .nav-links {
         gap: 20px;
     }
@@ -709,36 +592,6 @@ footer {
         font-size: 3rem;
     }
 
-    .languages {
-        margin-top: 30px;
-    }
-
-    .language-badge {
-        justify-content: center;
-        width: 100%;
-        padding: 12px 30px;
-    }
-
-    .form-group {
-        margin-bottom: 18px;
-    }
-
-    .form-group label {
-        font-size: 0.9rem;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        font-size: 0.95rem;
-        padding: 10px 12px;
-    }
-
-    .submit-btn {
-        font-size: 1rem;
-        padding: 12px 25px;
-    }
-
     .nav-links {
         gap: 15px;
         flex-wrap: wrap;
@@ -773,11 +626,7 @@ footer {
    Accessibility & Focus Styles
    =================================== */
 .nav-links a:focus,
-.lang-btn:focus,
-.submit-btn:focus,
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.lang-btn:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
 }
