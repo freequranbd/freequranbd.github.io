@@ -299,6 +299,23 @@ body[data-lang="bn"] .mission-rules {
     list-style-type: bengali;
 }
 
+.mission-notes-intro {
+    margin-top: 18px;
+    margin-bottom: 6px;
+}
+
+.mission-notes {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    padding-left: 1.6em;
+    list-style-type: disc;
+}
+
+.mission-notes li {
+    margin-bottom: 6px;
+}
+
 /* ===================================
    Services Section
    =================================== */
@@ -348,6 +365,7 @@ body[data-lang="bn"] {
 
 body[data-lang="bn"] .mission-text,
 body[data-lang="bn"] .mission-rules,
+body[data-lang="bn"] .mission-notes,
 body[data-lang="bn"] .service-card p,
 body[data-lang="bn"] .tagline,
 body[data-lang="bn"] .quote-translation {

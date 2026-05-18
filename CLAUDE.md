@@ -139,8 +139,8 @@ function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
 3. **Mission Statement**
    - Bismillah (Arabic)
    - Organization's mission and goals
-   - Statement of scope: only Noorani Hifz and Bangla-translation editions are provided; no branches; no financial transactions
-   - Ordered requirements list (`<ol class="mission-rules">`) — the four fields an email request should include: name, address (personal or institutional), reason
+   - Bulleted scope/limits list (`<ul class="mission-notes">`) introduced by a "Please note" `<strong>`: small charitable initiative with limited capacity; only Noorani Hifz and Bangla-translation editions provided; no office or branch anywhere; no financial transactions
+   - Ordered requirements list (`<ol class="mission-rules">`) — the four fields an email request should include: (1) name plus phone or WhatsApp number, (2) detailed delivery address with house/road/district/postal code and an explicit note that incomplete addresses cannot be served, (3) school or madrasa address for institutional requests, (4) reason for needing the Quran
    - Bilingual content; Bangla mode switches the `<ol>` markers to Bengali numerals via `list-style-type: bengali`
 
 4. **Services**
@@ -218,14 +218,14 @@ function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
 
 Requests are submitted by email rather than through an on-page form. The Request section presents a single `mailto:` link with a pre-filled subject line; the user's mail client opens for them to fill in details. The required fields are listed on-page in the Mission section's ordered requirements list and mirrored in the FAQ JSON-LD schema:
 
-- Full name
-- Detailed delivery address (for individual requests)
+- Full name **plus a phone or WhatsApp number**
+- Detailed delivery address — house, road, district, postal code (for individual requests). Abbreviated or incomplete addresses cannot be served.
 - School or madrasa address (for institutional requests)
 - Reason for needing the Quran (brief explanation)
 
 **Editions available:** Noorani Hifz Quran (Arabic, used for memorization) and the Bangla translation of the Quran.
 
-**Trust signals stated on-page and in FAQ:** the organization has no branches anywhere and conducts no financial transactions of any kind.
+**Trust signals stated on-page and in FAQ:** this is a small charitable initiative with limited capacity; the organization has no office or branch anywhere and conducts no financial transactions of any kind.
 
 **Recipient:** freequranbd@gmail.com
 
