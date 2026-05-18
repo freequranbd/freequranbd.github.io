@@ -317,45 +317,62 @@ body[data-lang="bn"] .mission-rules {
 }
 
 /* ===================================
-   Services Section
+   Impact Counter Section
    =================================== */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
+.impact-content {
+    max-width: 720px;
+    margin: 0 auto;
 }
 
-.service-card {
+.counter-card {
     background: #ffffff;
     border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: 35px 25px;
+    border-radius: 16px;
+    padding: 50px 30px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease,
+        transform 0.3s ease;
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary-color);
-    background: #f8f8f8;
+.counter-card:hover {
+    border-color: #006400;
     box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
 }
 
-.service-icon {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
+.counter-number {
+    font-family: "Poppins", "Noto Sans Bengali", sans-serif;
+    font-size: clamp(4.5rem, 12vw, 7rem);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 18px;
+    background: linear-gradient(135deg, #008000 0%, #006400 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #006400; /* fallback for browsers without background-clip: text */
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
 }
 
-.service-card h3 {
-    font-size: 1.5rem;
-    color: var(--primary-color);
+.counter-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-dark);
     margin-bottom: 10px;
 }
 
-.service-card p {
-    color: var(--text-light);
+.counter-subtext {
     font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+body[data-lang="bn"] .counter-label,
+body[data-lang="bn"] .counter-subtext {
+    line-height: 1.9;
 }
 
 /* Bangla font support */
@@ -366,7 +383,6 @@ body[data-lang="bn"] {
 body[data-lang="bn"] .mission-text,
 body[data-lang="bn"] .mission-rules,
 body[data-lang="bn"] .mission-notes,
-body[data-lang="bn"] .service-card p,
 body[data-lang="bn"] .tagline,
 body[data-lang="bn"] .quote-translation {
     line-height: 1.9;
@@ -611,9 +627,12 @@ footer {
         text-align: left;
     }
 
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    .counter-card {
+        padding: 40px 22px;
+    }
+
+    .counter-label {
+        font-size: 1.1rem;
     }
 
     .nav-links {
@@ -700,12 +719,16 @@ footer {
         font-size: 1.3rem;
     }
 
-    .service-card {
-        padding: 25px 20px;
+    .counter-card {
+        padding: 32px 18px;
     }
 
-    .service-icon {
-        font-size: 3rem;
+    .counter-label {
+        font-size: 1rem;
+    }
+
+    .counter-subtext {
+        font-size: 0.95rem;
     }
 
     .nav-links {

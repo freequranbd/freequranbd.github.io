@@ -211,12 +211,18 @@
                     {
                         "@type": "ListItem",
                         "position": 3,
+                        "name": "Our Impact",
+                        "item": "https://freequranbd.com/#impact"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 4,
                         "name": "FAQ",
                         "item": "https://freequranbd.com/#faq"
                     },
                     {
                         "@type": "ListItem",
-                        "position": 4,
+                        "position": 5,
                         "name": "Request Quran",
                         "item": "https://freequranbd.com/#request"
                     }
@@ -321,7 +327,7 @@
                         <a href="#mission" data-en="Mission" data-bn="লক্ষ্য">লক্ষ্য</a>
                     </li>
                     <li>
-                        <a href="#services" data-en="Services" data-bn="সেবা">সেবা</a>
+                        <a href="#impact" data-en="Impact" data-bn="প্রভাব">প্রভাব</a>
                     </li>
                     <li>
                         <a
@@ -443,61 +449,43 @@
                     </div>
                 </section>
 
-                <!-- Services Section -->
-                <section id="services" class="services-section">
+                <!-- Impact Counter Section -->
+                <section id="impact" class="impact-section">
                     <div class="section-header">
-                        <h2 data-en="What We Offer" data-bn="আমাদের সেবা">আমাদের সেবা</h2>
+                        <h2 data-en="Our Impact" data-bn="আমাদের প্রভাব">
+                            আমাদের প্রভাব
+                        </h2>
                         <div class="divider"></div>
                     </div>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-icon" role="img" aria-label="Mosque">
-                                🕌
-                            </div>
-                            <h3 data-en="For Madrassas" data-bn="মাদ্রাসার জন্য">
-                                মাদ্রাসার জন্য
-                            </h3>
-                            <p
-                                data-en="Free Quran copies for Islamic educational institutions"
-                                data-bn="ইসলামিক শিক্ষা প্রতিষ্ঠানের জন্য বিনামূল্যে ক্বোরআন"
+                    <div class="impact-content">
+                        <div class="counter-card">
+                            <div
+                                class="counter-number"
+                                data-target="22"
+                                aria-live="polite"
+                                aria-label="22 Qurans distributed"
                             >
-                                ইসলামিক শিক্ষা প্রতিষ্ঠানের জন্য বিনামূল্যে ক্বোরআন
+                                ০
+                            </div>
+                            <p
+                                class="counter-label"
+                                data-en="Qurans distributed since May 2026"
+                                data-bn="মে ২০২৬ থেকে বিতরণকৃত ক্বোরআন"
+                            >
+                                মে ২০২৬ থেকে বিতরণকৃত ক্বোরআন
                             </p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon" role="img" aria-label="School">
-                                🏫
-                            </div>
-                            <h3 data-en="For Schools" data-bn="স্কুলের জন্য">
-                                স্কুলের জন্য
-                            </h3>
                             <p
-                                data-en="Supporting schools with Quran resources for Islamic studies"
-                                data-bn="ইসলামিক শিক্ষার জন্য ক্বোরআন সংস্থান দিয়ে স্কুলগুলিকে সহায়তা করা"
+                                class="counter-subtext"
+                                data-en="And growing — every copy reaches a school, madrasa, or student in Bangladesh."
+                                data-bn="এবং বাড়ছে — প্রতিটি কপি বাংলাদেশের কোনো স্কুল, মাদ্রাসা বা শিক্ষার্থীর কাছে পৌঁছেছে।"
                             >
-                                ইসলামিক শিক্ষার জন্য ক্বোরআন সংস্থান দিয়ে স্কুলগুলিকে
-                                সহায়তা করা
-                            </p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon" role="img" aria-label="Student">
-                                👨‍🎓
-                            </div>
-                            <h3
-                                data-en="For Students"
-                                data-bn="শিক্ষার্থীদের জন্য (যে কোনো বয়েসের)"
-                            >
-                                শিক্ষার্থীদের জন্য (যে কোনো বয়েসের)
-                            </h3>
-                            <p
-                                data-en="Individual copies for students eager to learn"
-                                data-bn="শিখতে আগ্রহী শিক্ষার্থীদের জন্য ব্যক্তিগত কপি"
-                            >
-                                শিখতে আগ্রহী শিক্ষার্থীদের জন্য ব্যক্তিগত কপি
+                                এবং বাড়ছে — প্রতিটি কপি বাংলাদেশের কোনো স্কুল, মাদ্রাসা বা
+                                শিক্ষার্থীর কাছে পৌঁছেছে।
                             </p>
                         </div>
                     </div>
                 </section>
+
 
                 <!-- FAQ Section -->
                 <section id="faq" class="faq-section">
@@ -724,6 +712,8 @@
                             option.textContent = text;
                         }
                     });
+
+                renderCounter();
             }
 
             function switchLanguage(lang) {
@@ -744,6 +734,84 @@
                     switchLanguage(lang);
                 });
             });
+
+            // Impact counter — animated count-up from 0 to data-target.
+            // Localized: renders Bengali numerals when data-lang="bn".
+            const counterEl = document.querySelector(".counter-number");
+            const counterTarget = counterEl
+                ? parseInt(counterEl.getAttribute("data-target"), 10) || 0
+                : 0;
+            let counterValue = 0;
+            const bengaliDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+
+            function formatNumber(n, lang) {
+                const asciiStr = String(Math.round(n));
+                if (lang !== "bn") return asciiStr;
+                return asciiStr
+                    .split("")
+                    .map((ch) => (ch >= "0" && ch <= "9" ? bengaliDigits[+ch] : ch))
+                    .join("");
+            }
+
+            function renderCounter() {
+                if (!counterEl) return;
+                const lang = body.getAttribute("data-lang") || "bn";
+                counterEl.textContent = formatNumber(counterValue, lang);
+            }
+
+            function animateCounter() {
+                if (!counterEl || counterTarget <= 0) return;
+                const prefersReducedMotion = window.matchMedia(
+                    "(prefers-reduced-motion: reduce)",
+                ).matches;
+
+                if (prefersReducedMotion) {
+                    counterValue = counterTarget;
+                    renderCounter();
+                    return;
+                }
+
+                const duration = 1600;
+                const start = performance.now();
+
+                function tick(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // ease-out cubic for a natural decel
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    counterValue = eased * counterTarget;
+                    renderCounter();
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        counterValue = counterTarget;
+                        renderCounter();
+                    }
+                }
+
+                requestAnimationFrame(tick);
+            }
+
+            // Trigger animation once when the counter scrolls into view.
+            // Falls back to immediate animation if IntersectionObserver is unavailable.
+            if (counterEl) {
+                if ("IntersectionObserver" in window) {
+                    const observer = new IntersectionObserver(
+                        (entries, obs) => {
+                            entries.forEach((entry) => {
+                                if (entry.isIntersecting) {
+                                    animateCounter();
+                                    obs.disconnect();
+                                }
+                            });
+                        },
+                        { threshold: 0.3 },
+                    );
+                    observer.observe(counterEl);
+                } else {
+                    animateCounter();
+                }
+            }
 
             const savedLang = localStorage.getItem("preferred-language");
             if (savedLang && savedLang !== "bn") {

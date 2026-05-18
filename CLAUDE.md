@@ -36,7 +36,7 @@ A professional, responsive, bilingual (Bangla/English) website for a Quran distr
 - **Focus States:** Clear outlines on all interactive elements
 - **Reduced Motion:** Respects `prefers-reduced-motion` preference
 - **Semantic HTML:** Proper heading hierarchy and ARIA support
-- **ARIA Labels:** `role="img"` and `aria-label` on emoji icons
+- **ARIA Labels:** `aria-label` and `aria-live="polite"` on the impact counter so screen readers announce the final value instead of the animating number
 - **Color Contrast:** WCAG AA compliant colors
 
 ### 4. Performance
@@ -63,8 +63,8 @@ A professional, responsive, bilingual (Bangla/English) website for a Quran distr
 - **Logo:** Green-on-white Iqra calligraphy logo (`freequranbd_logo_gw.png`, 256×256 indexed PNG, ~20 KB) — rendered as a white badge on the green header
 - **Arabic Calligraphy:** Decorative Bismillah and Islamic symbols
 - **Gradient Headers/Footers:** Green gradient for a clean, professional appearance
-- **Card Layouts:** Service offerings with hover effects
-- **Smooth Animations:** Fade-in effects on page load
+- **Card Layouts:** Impact counter card with hover lift and shadow transition
+- **Smooth Animations:** Fade-in effects on page load; viewport-triggered count-up for the impact counter
 
 ## File Structure
 
@@ -94,7 +94,7 @@ freequranbd.com/
 2. **Decorative Elements** - Arabic calligraphy positioning
 3. **Header** - Logo, language switcher, tagline
 4. **Navigation** - Anchor links to page sections
-5. **Main Content** - Mission, services, request (email CTA) sections
+5. **Main Content** - Mission, impact counter, FAQ, request (email CTA) sections
 6. **Footer** - Quote and contact information
 7. **Responsive** - Media queries for all breakpoints
 8. **Accessibility** - Focus states and skip links
@@ -102,10 +102,10 @@ freequranbd.com/
 10. **Animations** - Keyframes and transitions
 
 ### Layout Techniques
-- **Flexbox:** Header, footer, language switcher, service cards
-- **CSS Grid:** Services grid
+- **Flexbox:** Header, footer, language switcher
 - **Position Fixed:** Decorative calligraphy elements
 - **Sticky Footer:** Flexbox on body element
+- **Fluid Typography:** Impact counter uses `clamp(4.5rem, 12vw, 7rem)` for the headline number
 
 ## JavaScript Functionality
 
@@ -125,6 +125,19 @@ function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
 ### Email Click Tracking
 - `mailto:` links in the Request section and footer have inline `onclick` handlers that fire `gtag('event', 'email_click', { email_type })` so GA4 can distinguish the two call-to-action paths.
 
+### Impact Counter Animation
+
+The `.counter-number` element is animated from 0 to its `data-target` value (currently 22) when it scrolls into view.
+
+- **Trigger:** `IntersectionObserver` with `threshold: 0.3` fires once when the counter is ~30% visible; observer disconnects after the first hit so the animation never replays.
+- **Easing:** Ease-out cubic (`1 - (1 - t)³`) over 1600 ms — fast start, gentle landing on the final value.
+- **Localized numerals:** `formatNumber(n, lang)` returns ASCII digits in English mode and Bengali digits (০–৯) in Bangla mode. Mirrors the existing `list-style-type: bengali` pattern used for the Mission `<ol>`.
+- **Language-toggle integration:** `applyLanguage()` calls `renderCounter()` after swapping text content, so toggling languages mid-animation (or after it completes) re-renders the current value in the new script.
+- **Reduced motion:** When `prefers-reduced-motion: reduce` matches, the counter jumps straight to the final value with no tick loop.
+- **Accessibility:** The element ships with a static `aria-label="22 Qurans distributed"` and `aria-live="polite"` so screen readers announce the final value rather than every interpolated frame.
+
+> When changing the counted total, update three things in lockstep: the `data-target` attribute on `.counter-number`, the value inside its `aria-label`, and any prose elsewhere (e.g. CLAUDE.md, social copy) that mentions the count.
+
 ## Content Sections
 
 1. **Header**
@@ -133,7 +146,7 @@ function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
    - Tagline
 
 2. **Navigation**
-   - Anchor links to Mission, Services, FAQ, Request sections
+   - Anchor links to Mission, Impact, FAQ, Request sections
    - Hidden in print layout
 
 3. **Mission Statement**
@@ -143,10 +156,12 @@ function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
    - Ordered requirements list (`<ol class="mission-rules">`) — the four fields an email request should include: (1) name plus phone or WhatsApp number, (2) detailed delivery address with house/road/district/postal code and an explicit note that incomplete addresses cannot be served, (3) school or madrasa address for institutional requests, (4) reason for needing the Quran
    - Bilingual content; Bangla mode switches the `<ol>` markers to Bengali numerals via `list-style-type: bengali`
 
-4. **Services**
-   - Three service cards (Madrassas, Schools, Students)
-   - ARIA-labeled emoji icons
-   - Hover effects
+4. **Impact Counter** (`#impact`)
+   - Single centered card displaying the running total of Qurans distributed (currently **22, starting May 2026**)
+   - Hero number rendered with the brand green gradient (`#008000 → #006400`) clipped to text via `-webkit-background-clip: text` (fallback solid `#006400` color for browsers that don't support text clipping)
+   - Bilingual label and subtext via `data-en`/`data-bn` attributes
+   - Animated count-up from 0 → `data-target` on viewport entry (see "Impact Counter Animation" under JavaScript Functionality)
+   - **Updating the count:** edit `data-target` on `.counter-number` AND the matching number in its `aria-label`; do not embed the count in static `data-en`/`data-bn` strings (the number is rendered by JS and would conflict with the language switcher)
 
 5. **FAQ Section**
    - Five bilingual Q&A items rendered as native `<details>`/`<summary>` (accessible, no JS dependency)
@@ -168,22 +183,24 @@ function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
 
 - **Modern Browsers:** Chrome, Firefox, Safari, Edge (latest versions)
 - **Mobile Browsers:** iOS Safari, Chrome Mobile, Samsung Internet
-- **Features Used:** CSS Grid, Flexbox, CSS Variables, LocalStorage
+- **Features Used:** Flexbox, CSS Variables, CSS `clamp()`, `background-clip: text`, LocalStorage, IntersectionObserver, `requestAnimationFrame`
 - **Fallbacks:** Graceful degradation for older browsers
 
 ## Responsive Breakpoints
 
 ### Desktop (>768px)
-- Three-column service grid
+- Counter card centered with max-width 720px, 50px vertical padding
+- Hero counter number sized at the upper bound of `clamp(4.5rem, 12vw, 7rem)`
 - Full decorative elements
 - Larger typography
 
 ### Tablet (≤768px)
-- Single-column service grid
+- Counter card padding tightens to 40px × 22px
 - Reduced decorations (opacity 0.05)
 - Medium typography
 
 ### Mobile (≤480px)
+- Counter card padding tightens further to 32px × 18px; label and subtext step down a size
 - Compact spacing
 - Smaller buttons and inputs
 - Hidden decorative elements
@@ -301,10 +318,13 @@ Potential features for future versions:
 - [ ] Verify GA4 `email_click` events fire for both the request CTA and footer link
 - [ ] Test responsive breakpoints (768px, 480px)
 - [ ] Test keyboard navigation and skip-to-main link
-- [ ] Test screen reader compatibility
+- [ ] Test screen reader compatibility (verify the impact counter announces its final value, not interpolated digits)
+- [ ] Test impact counter: scrolling triggers the 0 → 22 count-up exactly once per page load
+- [ ] Test impact counter renders Bengali numerals (০ → ২২) in Bangla mode and ASCII digits in English mode
+- [ ] Test impact counter respects `prefers-reduced-motion` (jumps to 22 with no animation)
 - [ ] Test print layout
 - [ ] Test with reduced motion enabled
-- [ ] Validate all JSON-LD blocks parse (Organization, WebSite, BreadcrumbList, FAQPage)
+- [ ] Validate all JSON-LD blocks parse (NGO, WebSite, BreadcrumbList, FAQPage)
 
 ## Contact & Support
 
@@ -316,13 +336,13 @@ Potential features for future versions:
 
 **Domain:** https://freequranbd.com
 **Built with:** Claude Code (Anthropic)
-**Version:** 2.3
-**Last Updated:** May 2026 (visible FAQ section; NGO schema type; 1200×630 social image; tighter title)
+**Version:** 2.4
+**Last Updated:** May 2026 (impact counter replaces services section; animated count-up; BreadcrumbList expanded with "Our Impact"; visible FAQ section; NGO schema type; 1200×630 social image; tighter title)
 **Copyright:** © 2026 FreeQuranBd. All rights reserved. No license is granted; all content is proprietary. Contact freequranbd@gmail.com for permission inquiries.
 
 ## SEO
 
-- **Structured Data:** NGO (subtype of Organization), WebSite, BreadcrumbList, FAQPage schemas (JSON-LD). FAQPage question names mirror the visible `<summary>` text in the FAQ section — eligibility for Google FAQ rich results depends on this 1:1 parity.
+- **Structured Data:** NGO (subtype of Organization), WebSite, BreadcrumbList, FAQPage schemas (JSON-LD). BreadcrumbList lists five items in document order: Home, Our Mission, Our Impact, FAQ, Request Quran — keep `position` numbers in sync with the visible section ordering when reordering or adding sections. FAQPage question names mirror the visible `<summary>` text in the FAQ section — eligibility for Google FAQ rich results depends on this 1:1 parity.
 - **Meta Tags:** Open Graph, Twitter Card, geo tags, canonical URL, `<meta name="copyright">`
 - **Social-share image:** `freequranbd_og.png` — 1200×630 PNG (~48 KB) referenced by `og:image` and `twitter:image`. Renders as a hero card on Facebook/Twitter/LinkedIn previews instead of a thumbnail.
 - **Sitemap:** `sitemap.xml` with `<xhtml:link>` x-default alternate (single URL serves both languages via in-page toggle, so explicit `bn`/`en` hreflang would be redundant)
