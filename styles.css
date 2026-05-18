@@ -359,6 +359,71 @@ body[data-lang="bn"] .section-header h2 {
 }
 
 /* ===================================
+   FAQ Section
+   =================================== */
+.faq-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: #f8f8f8;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 18px 24px;
+    margin-bottom: 12px;
+    transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.faq-item[open] {
+    background: #ffffff;
+    border-color: var(--text-light);
+}
+
+.faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    list-style: none;
+    position: relative;
+    padding-right: 32px;
+    line-height: 1.6;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: -2px;
+    color: var(--text-light);
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+    content: "−";
+}
+
+.faq-item p {
+    margin-top: 14px;
+    color: var(--text-light);
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+body[data-lang="bn"] .faq-item summary,
+body[data-lang="bn"] .faq-item p {
+    line-height: 1.9;
+}
+
+/* ===================================
    Request Section
    =================================== */
 .form-fallback {

@@ -73,6 +73,7 @@ freequranbd.com/
 ├── index.html                   # Main HTML file with bilingual content
 ├── styles.css                   # All CSS styles and responsive design
 ├── freequranbd_logo_gw.png      # Logo (256×256 indexed PNG, ~20 KB)
+├── freequranbd_og.png           # Social-share image (1200×630 PNG, ~48 KB)
 ├── sitemap.xml                  # XML sitemap for search engines
 ├── robots.txt                   # Crawler directives
 ├── CNAME                        # GitHub Pages custom domain (freequranbd.com)
@@ -132,7 +133,7 @@ function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
    - Tagline
 
 2. **Navigation**
-   - Anchor links to Mission, Services, Request sections
+   - Anchor links to Mission, Services, FAQ, Request sections
    - Hidden in print layout
 
 3. **Mission Statement**
@@ -147,13 +148,18 @@ function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
    - ARIA-labeled emoji icons
    - Hover effects
 
-5. **Request Section**
+5. **FAQ Section**
+   - Five bilingual Q&A items rendered as native `<details>`/`<summary>` (accessible, no JS dependency)
+   - Each `<summary>` and `<p>` carries `data-en`/`data-bn` so language toggle works without rebuilding the DOM
+   - Schema parity: the `FAQPage` JSON-LD's question names match the visible `<summary>` text *exactly* — required for Google FAQ rich-result eligibility. When editing one, edit the other in lockstep.
+
+6. **Request Section**
    - Bilingual heading and divider
    - Short bilingual instruction prompting the visitor to email
    - `mailto:` link to `freequranbd@gmail.com` with `subject=Free Quran Request` prefilled
    - GA4 `email_click` event (`email_type: request_primary`) on click
 
-6. **Footer**
+7. **Footer**
    - Quranic quote (Surah Al-'Alaq 96:1)
    - Translation in both languages
    - Copyright and contact information
@@ -310,17 +316,18 @@ Potential features for future versions:
 
 **Domain:** https://freequranbd.com
 **Built with:** Claude Code (Anthropic)
-**Version:** 2.2
-**Last Updated:** May 2026 (green theme refresh; mission requirements list; FAQ alignment)
+**Version:** 2.3
+**Last Updated:** May 2026 (visible FAQ section; NGO schema type; 1200×630 social image; tighter title)
 **Copyright:** © 2026 FreeQuranBd. All rights reserved. No license is granted; all content is proprietary. Contact freequranbd@gmail.com for permission inquiries.
 
 ## SEO
 
-- **Structured Data:** Organization, WebSite, BreadcrumbList, FAQPage schemas (JSON-LD)
-- **Meta Tags:** Open Graph, Twitter Card, geo tags, canonical URL
-- **Sitemap:** `sitemap.xml` with hreflang alternate links
-- **Robots:** `robots.txt` with sitemap reference
+- **Structured Data:** NGO (subtype of Organization), WebSite, BreadcrumbList, FAQPage schemas (JSON-LD). FAQPage question names mirror the visible `<summary>` text in the FAQ section — eligibility for Google FAQ rich results depends on this 1:1 parity.
+- **Meta Tags:** Open Graph, Twitter Card, geo tags, canonical URL, `<meta name="copyright">`
+- **Social-share image:** `freequranbd_og.png` — 1200×630 PNG (~48 KB) referenced by `og:image` and `twitter:image`. Renders as a hero card on Facebook/Twitter/LinkedIn previews instead of a thumbnail.
+- **Sitemap:** `sitemap.xml` with `<xhtml:link>` x-default alternate (single URL serves both languages via in-page toggle, so explicit `bn`/`en` hreflang would be redundant)
+- **Robots:** `robots.txt` with sitemap reference, permissive for all UAs
 - **Analytics:** Google Analytics 4 (GA4) with custom event tracking
-- **Google Search Console:** Verification meta tag configured
+- **Google Search Console:** Verification meta tag configured (manual indexing via Search Console is the fastest path to first-pass indexing for new domains)
 - **Favicon & touch icon:** `freequranbd_logo_gw.png` is referenced for both `<link rel="icon">` and `<link rel="apple-touch-icon" sizes="180x180">` — a 256×256 indexed PNG (~20 KB) serves both roles
 - **Default Content Language:** Bangla (matches `<html lang="bn">`)
