@@ -56,11 +56,13 @@ A professional, responsive, bilingual (Bangla/English) website for a Quran distr
 
 ### 6. Design Elements
 - **Color Scheme:**
-  - Primary: #000000 (Black)
-  - Secondary: #1a1a1a
-  - Accent: #ffffff (White)
+  - **Brand chrome** (header, nav, footer): `#008000` → `#006400` green gradient
+  - **Content text and accents** (headings, dividers, focus rings, skip-link): `#000000` (black, via `--primary-color`)
+  - **Background**: `#ffffff` (white)
+  - The green brand color is **hardcoded** in the `header`/`nav`/`footer` rules in `styles.css`. The CSS variable `--primary-color: #000000` controls in-card text accents only — changing it does not affect the brand chrome.
+- **Logo:** Green-on-white Iqra calligraphy logo (`freequranbd_logo_gw.png`, 256×256 indexed PNG, ~20 KB) — rendered as a white badge on the green header
 - **Arabic Calligraphy:** Decorative Bismillah and Islamic symbols
-- **Gradient Headers/Footers:** Professional appearance
+- **Gradient Headers/Footers:** Green gradient for a clean, professional appearance
 - **Card Layouts:** Service offerings with hover effects
 - **Smooth Animations:** Fade-in effects on page load
 
@@ -68,12 +70,16 @@ A professional, responsive, bilingual (Bangla/English) website for a Quran distr
 
 ```
 freequranbd.com/
-├── index.html          # Main HTML file with bilingual content
-├── styles.css          # All CSS styles and responsive design
-├── sitemap.xml         # XML sitemap for search engines
-├── robots.txt          # Crawler directives
-├── CLAUDE.md           # This documentation file
-└── README.md           # (Optional) Project readme
+├── index.html                   # Main HTML file with bilingual content
+├── styles.css                   # All CSS styles and responsive design
+├── freequranbd_logo_gw.png      # Logo (256×256 indexed PNG, ~20 KB)
+├── sitemap.xml                  # XML sitemap for search engines
+├── robots.txt                   # Crawler directives
+├── CNAME                        # GitHub Pages custom domain (freequranbd.com)
+├── LICENSE                      # License file
+├── SEO-IMPLEMENTATION-GUIDE.md  # SEO setup notes
+├── CLAUDE.md                    # This documentation file
+└── README.md                    # Project readme
 ```
 
 ## CSS Architecture
@@ -133,7 +139,9 @@ function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
 3. **Mission Statement**
    - Bismillah (Arabic)
    - Organization's mission and goals
-   - Bilingual content
+   - Statement of scope: only Noorani Hifz and Bangla-translation editions are provided; no branches; no financial transactions
+   - Ordered requirements list (`<ol class="mission-rules">`) — the four fields an email request should include: name, address (personal or institutional), reason
+   - Bilingual content; Bangla mode switches the `<ol>` markers to Bengali numerals via `list-style-type: bengali`
 
 4. **Services**
    - Three service cards (Madrassas, Schools, Students)
@@ -180,14 +188,14 @@ function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
 
 | Color | Hex | Usage |
 |-------|-----|-------|
-| Primary Black | #000000 | Headers, buttons, links |
-| Secondary Dark | #1a1a1a | Gradients, nav |
-| Accent White | #ffffff | Highlights, text on dark |
-| Text Dark | #000000 | Primary text |
-| Text Light | #666666 | Secondary text |
+| Brand Green | #008000 | Header & footer gradient start; mobile theme-color |
+| Brand Dark Green | #006400 | Header & footer gradient end; nav background |
+| Primary Black | #000000 | Headings, dividers, focus outlines, skip-link (via `--primary-color`) |
+| Text Dark | #000000 | Primary body text |
+| Text Light | #666666 | Secondary text, paragraph copy, list items |
+| Accent White | #ffffff | Text on green chrome, card backgrounds |
 | Background | #ffffff | Page background |
-| White | #ffffff | Cards, buttons |
-| Border | #d0d0d0 | Input borders, cards |
+| Border | #d0d0d0 | Card borders |
 
 ## Typography
 
@@ -203,20 +211,30 @@ function switchLanguage(lang) // applyLanguage + localStorage + GA4 event
 
 ## Request Submission
 
-Requests are submitted by email rather than through an on-page form. The Request section presents a single `mailto:` link with a pre-filled subject line; the user's mail client opens for them to fill in details. Suggested contents (communicated to users via the FAQ schema and homepage copy):
+Requests are submitted by email rather than through an on-page form. The Request section presents a single `mailto:` link with a pre-filled subject line; the user's mail client opens for them to fill in details. The required fields are listed on-page in the Mission section's ordered requirements list and mirrored in the FAQ JSON-LD schema:
 
-- Full name and phone number
-- Delivery address (district, division)
-- Number of copies needed
-- Preferred edition (Bangla translation, or Arabic with Bangla)
-- Organization name and type (madrassa / school / individual / other), if applicable
+- Full name
+- Detailed delivery address (for individual requests)
+- School or madrasa address (for institutional requests)
+- Reason for needing the Quran (brief explanation)
+
+**Editions available:** Noorani Hifz Quran (Arabic, used for memorization) and the Bangla translation of the Quran.
+
+**Trust signals stated on-page and in FAQ:** the organization has no branches anywhere and conducts no financial transactions of any kind.
 
 **Recipient:** freequranbd@gmail.com
+
+> When changing this list, update three places in sync: the `<ol class="mission-rules">` in `index.html`, the FAQ JSON-LD answers (Q1 in particular), and this section in CLAUDE.md.
 
 ## Customization Guide
 
 ### Changing Colors
-Edit CSS variables in `styles.css`:
+
+**Two separate places control color**, and confusing them is a common mistake:
+
+1. **Brand chrome (header / nav / footer)** — hardcoded green gradients in `styles.css`. Search for `linear-gradient(135deg, #008000` to find the two header/footer gradients, and `background: #006400` for the nav. The `<meta name="theme-color">` in `index.html` should match.
+2. **In-card text and accents** (headings, dividers, focus rings, skip-link) — driven by CSS variables in `:root`:
+
 ```css
 :root {
     --primary-color: #000000;
@@ -293,8 +311,8 @@ Potential features for future versions:
 
 **Domain:** https://freequranbd.com
 **Built with:** Claude Code (Anthropic)
-**Version:** 2.1
-**Last Updated:** May 2026
+**Version:** 2.2
+**Last Updated:** May 2026 (green theme refresh; mission requirements list; FAQ alignment)
 **License:** To be determined by organization
 
 ## SEO
@@ -305,5 +323,5 @@ Potential features for future versions:
 - **Robots:** `robots.txt` with sitemap reference
 - **Analytics:** Google Analytics 4 (GA4) with custom event tracking
 - **Google Search Console:** Verification meta tag configured
-- **Favicon:** `favicon.ico` and `apple-touch-icon.png` references
+- **Favicon & touch icon:** `freequranbd_logo_gw.png` is referenced for both `<link rel="icon">` and `<link rel="apple-touch-icon" sizes="180x180">` — a 256×256 indexed PNG (~20 KB) serves both roles
 - **Default Content Language:** Bangla (matches `<html lang="bn">`)
