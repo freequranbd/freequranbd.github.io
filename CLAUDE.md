@@ -76,7 +76,6 @@ freequranbd.com/
 ├── sitemap.xml                  # XML sitemap for search engines
 ├── robots.txt                   # Crawler directives
 ├── CNAME                        # GitHub Pages custom domain (freequranbd.com)
-├── LICENSE                      # License file
 ├── SEO-IMPLEMENTATION-GUIDE.md  # SEO setup notes
 ├── CLAUDE.md                    # This documentation file
 └── README.md                    # Project readme
@@ -313,7 +312,7 @@ Potential features for future versions:
 **Built with:** Claude Code (Anthropic)
 **Version:** 2.2
 **Last Updated:** May 2026 (green theme refresh; mission requirements list; FAQ alignment)
-**License:** To be determined by organization
+**Copyright:** © 2026 FreeQuranBd. All rights reserved. No license is granted; all content is proprietary. Contact freequranbd@gmail.com for permission inquiries.
 
 ## SEO
 
