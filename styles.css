@@ -266,6 +266,33 @@ section {
     text-align: justify;
 }
 
+.mission-text + .mission-text {
+    margin-top: 18px;
+}
+
+.mission-subhead {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 12px;
+}
+
+.mission-rules {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    padding-left: 1.6em;
+}
+
+.mission-rules li {
+    margin-bottom: 6px;
+}
+
+body[data-lang="bn"] .mission-rules {
+    list-style-type: bengali;
+}
+
 /* ===================================
    Services Section
    =================================== */
@@ -314,6 +341,7 @@ body[data-lang="bn"] {
 }
 
 body[data-lang="bn"] .mission-text,
+body[data-lang="bn"] .mission-rules,
 body[data-lang="bn"] .service-card p,
 body[data-lang="bn"] .tagline,
 body[data-lang="bn"] .quote-translation {
